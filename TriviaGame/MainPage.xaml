@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TriviaGame.MainPage"
+             xmlns:local="clr-namespace:TriviaGame"
+             x:DataType="local:TriviaViewModel"
+             Title="Trivia Game">
+
+    <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+        <!-- ============================= -->
+        <!-- Game setup section: choose category, difficulty, number of questions -->
+        <!-- ============================= -->
+        <Label Text="Select Category" FontAttributes="Bold" FontSize="Medium" IsVisible="{Binding ShowStartBtn}"/>
+        <Picker ItemsSource="{Binding Categories}" 
+                    SelectedItem="{Binding SelectedCategory}"
+                    IsVisible="{Binding ShowStartBtn}"/>
+
+        <Label Text="Select Difficulty" FontAttributes="Bold" FontSize="Medium" IsVisible="{Binding ShowStartBtn}"/>
+        <Picker ItemsSource="{Binding Difficulties}" 
+                    SelectedItem="{Binding SelectedDifficulty}" 
+                    IsVisible="{Binding ShowStartBtn}"/>
+
+        <Label Text="Number of Questions" FontAttributes="Bold" FontSize="Medium" IsVisible="{Binding ShowStartBtn}" />
+
+        <!-- Slider with min/max labels -->
+        <HorizontalStackLayout VerticalOptions="Center" Spacing="5" IsVisible="{Binding ShowStartBtn}">
+            <Label Text="5" VerticalOptions="Center" />
+            <!-- Minimum value -->
+            <Slider Minimum="5" Maximum="20" 
+                        Value="{Binding NumberOfQuestions, Mode=TwoWay}" 
+                        HorizontalOptions="Fill" WidthRequest="200" />
+            <Label Text="20" VerticalOptions="Center" />
+            <!-- Maximum value -->
+        </HorizontalStackLayout>
+
+        <!-- Display the currently selected number of questions -->
+        <Label Text="{Binding NumberOfQuestions, StringFormat='{0} Questions'}" 
+                   FontAttributes="Italic" 
+                   HorizontalOptions="Center" 
+                   FontSize="Medium" 
+                   IsVisible="{Binding ShowStartBtn}"/>
+
+        <!-- ============================= -->
+        <!-- Question display section -->
+        <!-- ============================= -->
+        <Label Text="{Binding QuestionNo, StringFormat='Question {0}'}"
+                   FontSize="Large"
+                   IsVisible="{Binding ShowQuestion}"/>
+        <Label Text="{Binding CurrentQuestion.category, StringFormat='Category : {0}'}"
+                   FontSize="Small"
+                   HorizontalOptions="Start"
+                   IsVisible="{Binding ShowQuestion}"/>
+        <Label Text="{Binding CurrentQuestion.question}"
+                   FontSize="Large"
+                   HorizontalOptions="Start"
+                   IsVisible="{Binding ShowQuestion}"/>
+
+        <!-- ============================= -->
+        <!-- Answer buttons grid -->
+        <!-- Buttons bind to Answers array and EnabledButtons property -->
+        <!-- Visibility bound to ButtonVisible array -->
+        <!-- Command bound to AnswerSelectedCommand with CommandParameter -->
+        <!-- ============================= -->
+        <Grid x:Name="ButtonGrid" RowDefinitions="*,*" ColumnDefinitions="*,*" RowSpacing="10" ColumnSpacing="10" Padding="20"
+                  IsVisible="{Binding ShowQuestion}">
+
+            <Button x:Name="Button0" Grid.Row="0" Grid.Column="0"
+                        Text="{Binding Answers[0]}"
+                        FontSize="Medium"
+                        CornerRadius="10"
+                        BackgroundColor="#4CAF50"
+                        TextColor="White"
+                        Padding="10"
+                        IsVisible="{Binding ButtonVisible[0]}"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        Command="{Binding AnswerSelectedCommand}"
+                        CommandParameter="0"
+                        IsEnabled="{Binding EnabledButtons}"
+                        LineBreakMode="WordWrap"/>
+
+            <Button x:Name="Button1" Grid.Row="0" Grid.Column="1"
+                        Text="{Binding Answers[1]}"
+                        FontSize="Medium"
+                        CornerRadius="10"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        Padding="10"
+                        IsVisible="{Binding ButtonVisible[1]}"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        Command="{Binding AnswerSelectedCommand}"
+                        CommandParameter="1"
+                        IsEnabled="{Binding EnabledButtons}"
+                        LineBreakMode="WordWrap"/>
+
+            <Button x:Name="Button2" Grid.Row="1" Grid.Column="0"
+                        Text="{Binding Answers[2]}"
+                        FontSize="Medium"
+                        CornerRadius="10"
+                        BackgroundColor="#FF9800"
+                        TextColor="White"
+                        Padding="10"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        IsVisible="{Binding ButtonVisible[2]}"
+                        Command="{Binding AnswerSelectedCommand}"
+                        CommandParameter="2" 
+                        IsEnabled="{Binding EnabledButtons}"
+                        LineBreakMode="WordWrap"/>
+
+            <Button x:Name="Button3" Grid.Row="1" Grid.Column="1"
+                        Text="{Binding Answers[3]}"
+                        FontSize="Medium"
+                        CornerRadius="10"
+                        BackgroundColor="#9C27B0"
+                        TextColor="White"
+                        Padding="10"
+                        IsVisible="{Binding ButtonVisible[3]}"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        Command="{Binding AnswerSelectedCommand}"
+                        CommandParameter="3"
+                        IsEnabled="{Binding EnabledButtons}"
+                        LineBreakMode="WordWrap"/>
+        </Grid>
+
+        <!-- ============================= -->
+        <!-- Feedback / End of game / Activity indicators -->
+        <!-- ============================= -->
+        <Label x:Name="CorrectLabel" HorizontalOptions="Center" Text="{Binding CorrectString}" FontSize="Large" IsVisible="{Binding ShowCorrectLabel}"/>
+        <Label Text="{Binding FinishString}" FontSize="Large" HorizontalOptions="Center" IsVisible="{Binding ShowFinish}"/>
+        <ActivityIndicator IsVisible="{Binding ShowActivity}" IsRunning="{Binding ShowActivity}"/>
+
+        <!-- ============================= -->
+        <!-- Control buttons -->
+        <!-- ============================= -->
+        <Button WidthRequest="200" Text="Start Game" Command="{Binding StartGameCommand}" IsVisible="{Binding ShowStartBtn}"/>
+        <Button WidthRequest="200" Text="{Binding NextButton}" Command="{Binding NextQCommand}" IsVisible="{Binding ShowNextBtn}"/>
+
+    </VerticalStackLayout>
+
+</ContentPage>
