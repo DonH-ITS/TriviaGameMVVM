@@ -1,14 +1,14 @@
-﻿namespace TriviaGame
+﻿using Microsoft.Extensions.DependencyInjection;
+
+namespace TriviaGame
 {
     public partial class App : Application
     {
-        public App()
-        {
+        public App() {
             InitializeComponent();
         }
 
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
+        protected override Window CreateWindow(IActivationState? activationState) {
             return new Window(new AppShell());
         }
     }

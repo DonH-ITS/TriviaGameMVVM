@@ -13,17 +13,17 @@
         <!-- ============================= -->
         <!-- Game setup section: choose category, difficulty, number of questions -->
         <!-- ============================= -->
-        <Label Text="Select Category" FontAttributes="Bold" FontSize="Medium" IsVisible="{Binding ShowStartBtn}"/>
+        <Label Text="Select Category" FontAttributes="Bold" FontSize="16" IsVisible="{Binding ShowStartBtn}"/>
         <Picker ItemsSource="{Binding Categories}" 
                     SelectedItem="{Binding SelectedCategory}"
                     IsVisible="{Binding ShowStartBtn}"/>
 
-        <Label Text="Select Difficulty" FontAttributes="Bold" FontSize="Medium" IsVisible="{Binding ShowStartBtn}"/>
+        <Label Text="Select Difficulty" FontAttributes="Bold" FontSize="16" IsVisible="{Binding ShowStartBtn}"/>
         <Picker ItemsSource="{Binding Difficulties}" 
                     SelectedItem="{Binding SelectedDifficulty}" 
                     IsVisible="{Binding ShowStartBtn}"/>
 
-        <Label Text="Number of Questions" FontAttributes="Bold" FontSize="Medium" IsVisible="{Binding ShowStartBtn}" />
+        <Label Text="Number of Questions" FontAttributes="Bold" FontSize="16" IsVisible="{Binding ShowStartBtn}" />
 
         <!-- Slider with min/max labels -->
         <HorizontalStackLayout VerticalOptions="Center" Spacing="5" IsVisible="{Binding ShowStartBtn}">
@@ -40,21 +40,21 @@
         <Label Text="{Binding NumberOfQuestions, StringFormat='{0} Questions'}" 
                    FontAttributes="Italic" 
                    HorizontalOptions="Center" 
-                   FontSize="Medium" 
+                   FontSize="16" 
                    IsVisible="{Binding ShowStartBtn}"/>
 
         <!-- ============================= -->
         <!-- Question display section -->
         <!-- ============================= -->
         <Label Text="{Binding QuestionNo, StringFormat='Question {0}'}"
-                   FontSize="Large"
+                   FontSize="22"
                    IsVisible="{Binding ShowQuestion}"/>
         <Label Text="{Binding CurrentQuestion.category, StringFormat='Category : {0}'}"
-                   FontSize="Small"
+                   FontSize="12"
                    HorizontalOptions="Start"
                    IsVisible="{Binding ShowQuestion}"/>
         <Label Text="{Binding CurrentQuestion.question}"
-                   FontSize="Large"
+                   FontSize="22"
                    HorizontalOptions="Start"
                    IsVisible="{Binding ShowQuestion}"/>
 
@@ -69,7 +69,7 @@
 
             <Button x:Name="Button0" Grid.Row="0" Grid.Column="0"
                         Text="{Binding Answers[0]}"
-                        FontSize="Medium"
+                        FontSize="16"
                         CornerRadius="10"
                         BackgroundColor="#4CAF50"
                         TextColor="White"
@@ -84,7 +84,7 @@
 
             <Button x:Name="Button1" Grid.Row="0" Grid.Column="1"
                         Text="{Binding Answers[1]}"
-                        FontSize="Medium"
+                        FontSize="16"
                         CornerRadius="10"
                         BackgroundColor="#2196F3"
                         TextColor="White"
@@ -99,7 +99,7 @@
 
             <Button x:Name="Button2" Grid.Row="1" Grid.Column="0"
                         Text="{Binding Answers[2]}"
-                        FontSize="Medium"
+                        FontSize="16"
                         CornerRadius="10"
                         BackgroundColor="#FF9800"
                         TextColor="White"
@@ -114,7 +114,7 @@
 
             <Button x:Name="Button3" Grid.Row="1" Grid.Column="1"
                         Text="{Binding Answers[3]}"
-                        FontSize="Medium"
+                        FontSize="16"
                         CornerRadius="10"
                         BackgroundColor="#9C27B0"
                         TextColor="White"
@@ -131,8 +131,8 @@
         <!-- ============================= -->
         <!-- Feedback / End of game / Activity indicators -->
         <!-- ============================= -->
-        <Label x:Name="CorrectLabel" HorizontalOptions="Center" Text="{Binding CorrectString}" FontSize="Large" IsVisible="{Binding ShowCorrectLabel}"/>
-        <Label Text="{Binding FinishString}" FontSize="Large" HorizontalOptions="Center" IsVisible="{Binding ShowFinish}"/>
+        <Label x:Name="CorrectLabel" HorizontalOptions="Center" Text="{Binding CorrectString}" FontSize="22" IsVisible="{Binding ShowCorrectLabel}"/>
+        <Label Text="{Binding FinishString}" FontSize="22" HorizontalOptions="Center" IsVisible="{Binding ShowFinish}"/>
         <ActivityIndicator IsVisible="{Binding ShowActivity}" IsRunning="{Binding ShowActivity}"/>
 
         <!-- ============================= -->

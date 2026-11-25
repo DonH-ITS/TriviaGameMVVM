@@ -363,7 +363,7 @@ namespace TriviaGame
 
         // Moves to the next question or ends the game
         public void NextQuestion() {
-            if (QuestionNo < _triviaResponse.results.Count) {
+            if (QuestionNo < _triviaResponse?.results.Count) {
                 MoveButton?.Invoke(_selectedButton, false);
                 QuestionNo++;
                 PrepareQuestion();
@@ -376,7 +376,7 @@ namespace TriviaGame
             }
             else {
                 ShowFinish = false;
-                _triviaResponse.results.Clear();
+                _triviaResponse?.results.Clear();
                 ShowStartBtn = true;
                 ShowNextBtn = false;
             }
